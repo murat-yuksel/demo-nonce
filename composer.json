@@ -1,0 +1,12 @@
+{
+  "name": "murat-yuksel/demo-nonce",
+  "description": "This is a demonstration purposed Wordpress nonce implementation OOP way",
+  "minimum-stability": "stable",
+  "license": "gpl",
+  "authors": [
+    {
+      "name": "Murat Yüksel",
+      "email": "murat@muratyuksel.net"
+    }
+  ]
+}
