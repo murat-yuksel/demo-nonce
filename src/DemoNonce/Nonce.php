@@ -19,10 +19,9 @@ class Nonce
 
     /**
      * Nonce constructor.
-     * @param string $token
      * @param int $tick
      */
-    public function __construct($token, $tick = 3600)
+    public function __construct($tick = 3600)
     {
         $this->token = bin2hex(random_bytes(16));
         $this->tick = (int)$tick;
