@@ -20,12 +20,38 @@ class Nonce
     /**
      * Nonce constructor.
      * @param int $tick
+     * @param array $params
      */
-    public function __construct($tick = 3600)
+    public function __construct($tick = 3600, array $params = [])
     {
-        $this->token = bin2hex(random_bytes(16));
+        $this->token = md5(print_r($params, true));
         $this->tick = (int)$tick;
         $this->createdAt = time();
+    }
+
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     * @param array $params
+     * @return bool
+     */
+    public function verify($token, array $params = []): bool
+    {
+        if (time() > $this->tick + $this->createdAt) {
+            return false;
+        }
+        if($token !== $this->getToken()) {
+            return false;
+        }
+        if($this->token !== md5(print_r($params, true))) {
+            return false;
+        }
+
+        return true;
     }
 
 }
