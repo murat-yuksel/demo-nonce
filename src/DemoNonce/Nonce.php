@@ -22,7 +22,7 @@ class Nonce
      * @param int $tick
      * @param array $params
      */
-    public function __construct($tick = 3600, array $params = [])
+    public function __construct($tick = 300, array $params = [])
     {
         $this->token = md5(print_r($params, true));
         $this->tick = (int)$tick;

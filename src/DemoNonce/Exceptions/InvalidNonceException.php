@@ -10,9 +10,8 @@ namespace DemoNonce\Exceptions;
 
 
 use Exception;
-use InvalidArgumentException;
 
-class InvalidNonceException extends InvalidArgumentException
+class InvalidNonceException extends Exception
 {
 
     /**

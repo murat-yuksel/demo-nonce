@@ -20,7 +20,7 @@ class DemoNonce
      * @param int $validTime
      * @param SessionInterface $sessionHandler
      */
-    public function __construct($sessionHandler, $validTime = 300000)
+    public function __construct($sessionHandler, $validTime = 300)
     {
         $this->sessionHandler = $sessionHandler;
         $this->validTime = $validTime;
@@ -33,6 +33,14 @@ class DemoNonce
     public function getNonce(array $params = []): Nonce
     {
         if ($this->sessionHandler->has('nonce_demononce')) {
+            try {
+                $this->validateNonce(
+                    $this->sessionHandler->get('nonce_demononce'),
+                    $this->sessionHandler->get('nonce_demononce')->getToken()
+                );
+            } catch(\Exception $e) {
+                return $this->createNonce($params);
+            }
             return $this->sessionHandler->get('nonce_demononce');
         }
         return $this->createNonce($params);
