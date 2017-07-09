@@ -27,8 +27,6 @@ class NonceHtml
     public static function getMetaTagNonce(): string
     {
         $request = Request::createFromGlobals();
-        $session = $request->getSession();
-        $session->clear();
         return '<meta name="_nonce" id="_nonce" content"'
             . (new DemoNonce(new Session()))->getNonce(['ip' => $request->getClientIp()])->getToken() . '">';
     }
